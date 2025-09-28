@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     const excelBuffer = generateExcelFile(extractedData, ratios, companyName.trim())
 
     // Return Excel file
-    return new NextResponse(excelBuffer, {
+    return new NextResponse(excelBuffer.buffer.slice(excelBuffer.byteOffset, excelBuffer.byteOffset + excelBuffer.byteLength), {
       status: 200,
       headers: {
         'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
